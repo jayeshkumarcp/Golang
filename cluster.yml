@@ -1,0 +1,30 @@
+# If you intended to deploy Kubernetes in an air-gapped environment,
+# please consult the documentation on how to configure custom RKE images.
+kubernetes_version: v1.19.7-rancher1-1
+cluster_name: rancher-test
+nodes:
+- address: "192.168.56.102"
+  role: [controlplane,etcd,worker]
+  user: "admin"
+- address: "192.168.56.103"
+  role: [controlplane,etcd,worker]
+  user: "admin"
+- address: "192.168.56.104"
+  role: [controlplane,etcd,worker]
+  user: "admin"
+kubernetes_version: v1.19.7-rancher1-1
+services:
+  etcd:
+    image: quay.io/coreos/etcd:latest
+  kube-api:
+    image: rancher/hyperkube:v1.19.7-rancher1
+    secrets_encryption_config:
+      enabled: true
+  kube-controller:
+    image: rancher/hyperkube:v1.19.7-rancher1
+  scheduler:
+    image: rancher/hyperkube:v1.19.7-rancher1
+  kubelet:
+    image: rancher/hyperkube:v1.19.7-rancher1
+  kubeproxy:
+    image: rancher/hyperkube:v1.19.7-rancher1
