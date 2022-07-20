@@ -1,6 +1,7 @@
 pipeline {
-    agent node2
-
+    agent {
+        node2
+    }
     stages {
         stage('step1') {
             steps {
